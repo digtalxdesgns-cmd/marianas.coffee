@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { localeOptions, translations, type Locale } from "./translations";
 
@@ -28,6 +28,11 @@ export default function Home() {
   const [wholesaleSent, setWholesaleSent] = useState(false);
   const [emailJoined, setEmailJoined] = useState(false);
   const [headerScrolled, setHeaderScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [filmVideoOpen, setFilmVideoOpen] = useState(false);
+  const [wholesaleModalOpen, setWholesaleModalOpen] = useState(false);
+  const wholesaleButtonRef = useRef<HTMLButtonElement>(null);
+  const wholesaleCloseRef = useRef<HTMLButtonElement>(null);
 
   const t = translations[locale];
 
@@ -49,6 +54,62 @@ export default function Home() {
     return () => window.removeEventListener("scroll", updateHeaderState);
   }, []);
 
+  useEffect(() => {
+    const updateViewport = () => setIsMobile(window.innerWidth <= 620);
+
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    return () => window.removeEventListener("resize", updateViewport);
+  }, []);
+
+  useEffect(() => {
+    if (!wholesaleModalOpen) {
+      return undefined;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const previousFocus = document.activeElement as HTMLElement | null;
+    wholesaleCloseRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setWholesaleModalOpen(false);
+      }
+
+      if (event.key === "Tab" && wholesaleCloseRef.current) {
+        const focusable = Array.from(
+          document.querySelectorAll<HTMLButtonElement | HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
+            ".wholesale-modal [tabindex]:not([tabindex='-1']), .wholesale-modal button, .wholesale-modal input, .wholesale-modal select, .wholesale-modal textarea",
+          ),
+        );
+
+        if (!focusable.length) {
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+      previousFocus?.focus();
+    };
+  }, [wholesaleModalOpen]);
+
   const changeLanguage = (nextLocale: Locale) => {
     setLocale(nextLocale);
     setMenuOpen(false);
@@ -60,7 +121,7 @@ export default function Home() {
     <main>
       <div className="announcement">
         <span>{t.announcement}</span>
-        <a className="announcement-extra announcement-link" href="#film">{t.watchStory} <span>→</span></a>
+        <a className="announcement-extra announcement-link" href="/our-story">{t.watchStory} <span>→</span></a>
       </div>
 
       <header className={headerScrolled ? "site-header site-header--scrolled" : "site-header"}>
@@ -70,7 +131,7 @@ export default function Home() {
 
         <nav className={menuOpen ? "main-nav open" : "main-nav"} aria-label={t.toggleMenu}>
           <a href={shopUrl} onClick={() => setMenuOpen(false)}>{t.nav.shop}</a>
-          <a href="#story" onClick={() => setMenuOpen(false)}>{t.nav.story}</a>
+          <a href="/our-story" onClick={() => setMenuOpen(false)}>{t.nav.story}</a>
           <a href="#process" onClick={() => setMenuOpen(false)}>{t.nav.coffee}</a>
           <a href="#wholesale" onClick={() => setMenuOpen(false)}>{t.nav.wholesale}</a>
         </nav>
@@ -107,7 +168,7 @@ export default function Home() {
           <p className="hero-copy">{t.heroCopy}</p>
           <div className="hero-actions">
             <a className="button button-gold" href={shopUrl}>{t.shopCoffee} <span>→</span></a>
-            <a className="text-link light-link" href="#story">{t.discoverStory} <span>↘</span></a>
+            <a className="text-link light-link" href="/our-story">{t.discoverStory} <span>↘</span></a>
           </div>
         </div>
         <div className="hero-origin">
@@ -126,30 +187,61 @@ export default function Home() {
       </section>
 
       <section className="film-section" id="film">
-        <div className="film-copy">
-          <p className="eyebrow">{t.film.eyebrow}</p>
-          <h2>{t.film.title}</h2>
-          <p>{t.film.body}</p>
-          <div className="film-details" aria-label="Video highlights">
-            {t.film.details.map((detail) => <span key={detail}>{detail}</span>)}
+        {isMobile ? (
+          <div className="film-mobile">
+            <p className="eyebrow">{t.film.eyebrow}</p>
+            <h2>The island behind Earth’s Finest Coffee.</h2>
+            <p>Born in Saipan in 2004, Marianas Coffee is shaped by clear Pacific water, warm trade winds, and the island’s relaxed rhythm. Every batch is still roasted here.</p>
+            <div className="film-mobile-video-head">OUR ISLAND STORY · MARIANAS COFFEE, SAIPAN.</div>
+            {filmVideoOpen ? (
+              <div className="film-mobile-video video-open">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/2KTV1iakKk8?rel=0&autoplay=1"
+                  title={t.film.videoTitle}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="film-mobile-video"
+                aria-label="Play the Marianas Coffee story video"
+                onClick={() => setFilmVideoOpen(true)}
+                style={{ backgroundImage: "url('https://img.youtube.com/vi/2KTV1iakKk8/hqdefault.jpg')" }}
+              />
+            )}
           </div>
-        </div>
-        <div className="film-frame">
-          <div className="film-frame-top">
-            <span>{t.film.frameTitle}</span>
-            <span>{t.film.frameMeta}</span>
-          </div>
-          <div className="video-wrap">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/2KTV1iakKk8?rel=0"
-              title={t.film.videoTitle}
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
-        </div>
+        ) : (
+          <>
+            <div className="film-copy">
+              <p className="eyebrow">{t.film.eyebrow}</p>
+              <h2>{t.film.title}</h2>
+              <p>{t.film.body}</p>
+              <div className="film-details" aria-label="Video highlights">
+                {t.film.details.map((detail) => <span key={detail}>{detail}</span>)}
+              </div>
+            </div>
+            <div className="film-frame">
+              <div className="film-frame-top">
+                <span>{t.film.frameTitle}</span>
+                <span>{t.film.frameMeta}</span>
+              </div>
+              <div className="video-wrap">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/2KTV1iakKk8?rel=0"
+                  title={t.film.videoTitle}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </>
+        )}
       </section>
 
       <section className="shop-preview section" id="shop">
@@ -204,7 +296,7 @@ export default function Home() {
           <h2>{t.story.title}</h2>
           <p className="story-lead">{t.story.lead}</p>
           <p>{t.story.body}</p>
-          <a className="text-link" href="#process">{t.story.journey} <span>→</span></a>
+          <a className="text-link" href="/our-story">{t.story.journey} <span>→</span></a>
         </div>
       </section>
 
@@ -237,38 +329,102 @@ export default function Home() {
       </section>
 
       <section className="wholesale-section" id="wholesale">
-        <div className="wholesale-intro">
-          <p className="eyebrow light">{t.wholesale.eyebrow}</p>
-          <h2>{t.wholesale.title}</h2>
-          <p>{t.wholesale.body}</p>
-          <div className="wholesale-benefits">
-            {t.wholesale.benefits.map((benefit) => <span key={benefit}>{benefit}</span>)}
-          </div>
-        </div>
-        <form className="wholesale-form" onSubmit={(event) => { event.preventDefault(); setWholesaleSent(true); }}>
-          {wholesaleSent ? (
-            <div className="form-success" role="status">
-              <span>✓</span>
-              <h3>{t.wholesale.successTitle}</h3>
-              <p>{t.wholesale.successBody}</p>
-              <button type="button" className="text-link" onClick={() => setWholesaleSent(false)}>{t.wholesale.sendAnother}</button>
+        {isMobile ? (
+          <>
+            <div className="wholesale-intro">
+              <p className="eyebrow light">{t.wholesale.eyebrow}</p>
+              <h2>{t.wholesale.title}</h2>
+              <p>{t.wholesale.body}</p>
+              <div className="wholesale-benefits">
+                {t.wholesale.benefits.map((benefit) => <span key={benefit}>{benefit}</span>)}
+              </div>
+              <button
+                ref={wholesaleButtonRef}
+                className="button button-gold wholesale-mobile-button"
+                type="button"
+                onClick={() => setWholesaleModalOpen(true)}
+              >
+                START A WHOLESALE INQUIRY <span>→</span>
+              </button>
             </div>
-          ) : (
-            <>
-              <div className="form-heading"><span>{t.wholesale.formTitle}</span><small>{t.wholesale.required}</small></div>
-              <label>{t.wholesale.businessName}<input name="business" required placeholder={t.wholesale.businessPlaceholder} /></label>
-              <label>{t.wholesale.email}<input name="email" type="email" required placeholder={t.wholesale.emailPlaceholder} /></label>
-              <label>{t.wholesale.type}
-                <select name="type" required defaultValue="">
-                  <option value="" disabled>{t.wholesale.selectOne}</option>
-                  {t.wholesale.options.map((option) => <option key={option}>{option}</option>)}
-                </select>
-              </label>
-              <label>{t.wholesale.needs}<textarea name="message" rows={3} placeholder={t.wholesale.needsPlaceholder} /></label>
-              <button className="button button-gold" type="submit">{t.wholesale.submit} <span>→</span></button>
-            </>
-          )}
-        </form>
+            {wholesaleModalOpen && (
+              <div className="wholesale-modal-backdrop" aria-modal="true" role="dialog" aria-labelledby="wholesale-mobile-title">
+                <div className="wholesale-modal-content">
+                  <div className="wholesale-modal-header">
+                    <button
+                      ref={wholesaleCloseRef}
+                      type="button"
+                      className="wholesale-close"
+                      onClick={() => setWholesaleModalOpen(false)}
+                      aria-label="Close wholesale inquiry"
+                    >
+                      ×
+                    </button>
+                    <h3 id="wholesale-mobile-title">Wholesale Inquiry.</h3>
+                  </div>
+                  <form className="wholesale-form wholesale-modal-form" onSubmit={(event) => { event.preventDefault(); setWholesaleSent(true); }}>
+                    {wholesaleSent ? (
+                      <div className="form-success" role="status">
+                        <span>✓</span>
+                        <h3>{t.wholesale.successTitle}</h3>
+                        <p>{t.wholesale.successBody}</p>
+                        <button type="button" className="text-link" onClick={() => setWholesaleSent(false)}>{t.wholesale.sendAnother}</button>
+                      </div>
+                    ) : (
+                      <>
+                        <label>{t.wholesale.businessName}<input name="business" required placeholder={t.wholesale.businessPlaceholder} /></label>
+                        <label>{t.wholesale.email}<input name="email" type="email" required placeholder={t.wholesale.emailPlaceholder} /></label>
+                        <label>{t.wholesale.type}
+                          <select name="type" required defaultValue="">
+                            <option value="" disabled>{t.wholesale.selectOne}</option>
+                            {t.wholesale.options.map((option) => <option key={option}>{option}</option>)}
+                          </select>
+                        </label>
+                        <label>{t.wholesale.needs}<textarea name="message" rows={3} placeholder={t.wholesale.needsPlaceholder} /></label>
+                        <button className="button button-gold" type="submit">{t.wholesale.submit} <span>→</span></button>
+                      </>
+                    )}
+                  </form>
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="wholesale-intro">
+              <p className="eyebrow light">{t.wholesale.eyebrow}</p>
+              <h2>{t.wholesale.title}</h2>
+              <p>{t.wholesale.body}</p>
+              <div className="wholesale-benefits">
+                {t.wholesale.benefits.map((benefit) => <span key={benefit}>{benefit}</span>)}
+              </div>
+            </div>
+            <form className="wholesale-form" onSubmit={(event) => { event.preventDefault(); setWholesaleSent(true); }}>
+              {wholesaleSent ? (
+                <div className="form-success" role="status">
+                  <span>✓</span>
+                  <h3>{t.wholesale.successTitle}</h3>
+                  <p>{t.wholesale.successBody}</p>
+                  <button type="button" className="text-link" onClick={() => setWholesaleSent(false)}>{t.wholesale.sendAnother}</button>
+                </div>
+              ) : (
+                <>
+                  <div className="form-heading"><span>{t.wholesale.formTitle}</span><small>{t.wholesale.required}</small></div>
+                  <label>{t.wholesale.businessName}<input name="business" required placeholder={t.wholesale.businessPlaceholder} /></label>
+                  <label>{t.wholesale.email}<input name="email" type="email" required placeholder={t.wholesale.emailPlaceholder} /></label>
+                  <label>{t.wholesale.type}
+                    <select name="type" required defaultValue="">
+                      <option value="" disabled>{t.wholesale.selectOne}</option>
+                      {t.wholesale.options.map((option) => <option key={option}>{option}</option>)}
+                    </select>
+                  </label>
+                  <label>{t.wholesale.needs}<textarea name="message" rows={3} placeholder={t.wholesale.needsPlaceholder} /></label>
+                  <button className="button button-gold" type="submit">{t.wholesale.submit} <span>→</span></button>
+                </>
+              )}
+            </form>
+          </>
+        )}
       </section>
 
       <section className="newsletter" id="newsletter">
@@ -291,7 +447,7 @@ export default function Home() {
           </svg>
           <span>{t.nav.home}</span>
         </a>
-        <a href="#story" aria-label={t.nav.story}>
+        <a href="/our-story" aria-label={t.nav.story}>
           <svg className="bottom-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" />
             <path d="M8 7h8M8 12h8M8 17h5" />
@@ -330,7 +486,7 @@ export default function Home() {
           </a>
           <p>{t.footer.body[0]}<br />{t.footer.body[1]}</p>
         </div>
-        <div className="footer-links"><strong>{t.footer.explore}</strong>{t.footer.links.map((label, index) => <a key={label} href={[shopUrl, "#story", "#process", "#wholesale"][index]}>{label}</a>)}</div>
+        <div className="footer-links"><strong>{t.footer.explore}</strong>{t.footer.links.map((label, index) => <a key={label} href={[shopUrl, "/our-story", "#process", "#wholesale"][index]}>{label}</a>)}</div>
         <div className="footer-links"><strong>{t.footer.contact}</strong><span>{t.footer.location}</span><a href="tel:+16702341000">+1 670 234 1000</a><a href="tel:+16703229554">+1 670 322 9554</a></div>
         <div className="footer-bottom"><span>{t.footer.copyright}</span><span>Earth&apos;s Finest Coffee®</span><span>Saipan · MP 96950</span></div>
       </footer>
