@@ -130,9 +130,9 @@ export default function Home() {
         </a>
 
         <nav className={menuOpen ? "main-nav open" : "main-nav"} aria-label={t.toggleMenu}>
-          <a href={shopUrl} onClick={() => setMenuOpen(false)}>{t.nav.shop}</a>
+          <a href="#top" onClick={() => setMenuOpen(false)}>{t.nav.home}</a>
           <a href="/our-story" onClick={() => setMenuOpen(false)}>{t.nav.story}</a>
-          <a href="#process" onClick={() => setMenuOpen(false)}>{t.nav.coffee}</a>
+          <a href="#collection" onClick={() => setMenuOpen(false)}>{t.nav.coffee}</a>
           <a href="#wholesale" onClick={() => setMenuOpen(false)}>{t.nav.wholesale}</a>
         </nav>
 
@@ -315,7 +315,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="collection-feature section">
+      <section className="collection-feature section" id="collection">
         <div className="collection-photo" role="img" aria-label={t.collection.imageLabel} />
         <div className="collection-copy">
           <p className="eyebrow">{t.collection.eyebrow}</p>

@@ -149,7 +149,7 @@ export default function OurStoryPage() {
         <nav className={menuOpen ? "main-nav open" : "main-nav"} aria-label={t.toggleMenu}>
           <Link href="/" onClick={() => setMenuOpen(false)}>{t.nav.home}</Link>
           <Link href="/our-story" onClick={() => setMenuOpen(false)}>{t.nav.story}</Link>
-          <Link href="/#process" onClick={() => setMenuOpen(false)}>{t.nav.coffee}</Link>
+          <Link href="/#collection" onClick={() => setMenuOpen(false)}>{t.nav.coffee}</Link>
           <Link href="/#wholesale" onClick={() => setMenuOpen(false)}>{t.nav.wholesale}</Link>
         </nav>
 
@@ -291,7 +291,7 @@ export default function OurStoryPage() {
           </svg>
           <span>{t.nav.story}</span>
         </Link>
-        <Link href="/#process" aria-label={t.nav.coffee}>
+        <Link href="/#collection" aria-label={t.nav.coffee}>
           <svg className="bottom-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M8 8h8a4 4 0 0 1 0 8H8a4 4 0 0 1 0-8Z" />
             <path d="M6 12h12" />
@@ -327,7 +327,7 @@ export default function OurStoryPage() {
           <strong>{t.footer.explore}</strong>
           <a href={shopUrl}>{t.footer.links[0]}</a>
           <Link href="/our-story">{t.footer.links[1]}</Link>
-          <Link href="/#process">{t.footer.links[2]}</Link>
+          <Link href="/#collection">{t.footer.links[2]}</Link>
           <Link href="/#wholesale">{t.footer.links[3]}</Link>
         </div>
         <div className="footer-links">
