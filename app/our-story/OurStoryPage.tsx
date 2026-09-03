@@ -183,7 +183,18 @@ export default function OurStoryPage() {
         <div className="story-hero-media" role="img" aria-label={t.ourStory.heroImageAlt} />
         <div className="story-hero-content">
           <p className="eyebrow light">{t.ourStory.heroLabel}</p>
-          <h1>{isMobile && locale === "en" ? "Born and roasted in Saipan." : t.ourStory.heroTitle}</h1>
+          <h1>
+            {isMobile && locale === "en" ? (
+              <>
+                <span className="story-hero-line">Born</span>
+                <span className="story-hero-line">and</span>
+                <span className="story-hero-line">roasted</span>
+                <span className="story-hero-line story-hero-line--nowrap">in Saipan.</span>
+              </>
+            ) : (
+              t.ourStory.heroTitle
+            )}
+          </h1>
           {isMobile && locale === "en" && <span className="supporting-line">Unmistakably Marianas.</span>}
           <p>{t.ourStory.heroIntro}</p>
           {isMobile && locale === "en" && <span className="continue-indicator" aria-hidden="true">↓</span>}

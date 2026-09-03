@@ -283,10 +283,16 @@ a { color: inherit; text-decoration: none; }
   }
   .story-hero-content h1 {
     margin: 0;
-    max-width: 240px;
-    font-size: 30px;
+    max-width: 155px;
+    font-size: clamp(20px, 6.4vw, 30px);
     line-height: .9;
     letter-spacing: -.04em;
+  }
+  .story-hero-content h1 .story-hero-line {
+    display: block;
+  }
+  .story-hero-content h1 .story-hero-line--nowrap {
+    white-space: nowrap;
   }
   .story-hero-content .supporting-line {
     display: block;
