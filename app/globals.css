@@ -376,7 +376,7 @@ html:lang(ja) .hero h1, html:lang(ja) h2, html:lang(ja) h3 {
   .header-shop { display: none; }
   .hero { min-height: calc(100svh - 106px); background-image: linear-gradient(90deg, rgba(24,23,19,.78) 0%, rgba(31,29,23,.56) 38%, rgba(25,27,21,.12) 72%), linear-gradient(rgba(194,164,102,.04), rgba(24,23,19,.08)), url('/images/hero-mobile.png'); background-position: center; }
   .hero-content { width: 100%; padding: 82px 22px 72px; }
-  .hero h1 { font-size: clamp(54px,17vw,76px); }
+  .hero h1 { font-size: clamp(42px, 12vw, 58px); line-height: 0.9; }
   .hero-copy { font-size: 17px; white-space: pre-line; }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 24px; }
   .intro-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }

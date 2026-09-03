@@ -31,6 +31,7 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [filmVideoOpen, setFilmVideoOpen] = useState(false);
   const [wholesaleModalOpen, setWholesaleModalOpen] = useState(false);
+  const [wholesaleError, setWholesaleError] = useState<string | null>(null);
   const wholesaleButtonRef = useRef<HTMLButtonElement>(null);
   const wholesaleCloseRef = useRef<HTMLButtonElement>(null);
 
@@ -109,6 +110,40 @@ export default function Home() {
       previousFocus?.focus();
     };
   }, [wholesaleModalOpen]);
+
+  const sendWholesale = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setWholesaleError(null);
+
+    const form = event.currentTarget as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const payload = {
+      business: (formData.get("business") as string) ?? "",
+      email: (formData.get("email") as string) ?? "",
+      type: (formData.get("type") as string) ?? "",
+      message: (formData.get("message") as string) ?? "",
+    };
+
+    try {
+      const res = await fetch("/api/wholesale", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        setWholesaleError(json?.error ?? "Submission failed");
+        return;
+      }
+
+      setWholesaleSent(true);
+      form.reset();
+    } catch (err) {
+      setWholesaleError("Network error");
+    }
+  };
 
   const changeLanguage = (nextLocale: Locale) => {
     setLocale(nextLocale);
@@ -362,7 +397,7 @@ export default function Home() {
                     </button>
                     <h3 id="wholesale-mobile-title">Wholesale Inquiry.</h3>
                   </div>
-                  <form className="wholesale-form wholesale-modal-form" onSubmit={(event) => { event.preventDefault(); setWholesaleSent(true); }}>
+                  <form className="wholesale-form wholesale-modal-form" onSubmit={sendWholesale}>
                     {wholesaleSent ? (
                       <div className="form-success" role="status">
                         <span>✓</span>
@@ -382,6 +417,7 @@ export default function Home() {
                         </label>
                         <label>{t.wholesale.needs}<textarea name="message" rows={3} placeholder={t.wholesale.needsPlaceholder} /></label>
                         <button className="button button-gold" type="submit">{t.wholesale.submit} <span>→</span></button>
+                        {wholesaleError && <p className="form-error" role="alert">{wholesaleError}</p>}
                       </>
                     )}
                   </form>
@@ -399,7 +435,7 @@ export default function Home() {
                 {t.wholesale.benefits.map((benefit) => <span key={benefit}>{benefit}</span>)}
               </div>
             </div>
-            <form className="wholesale-form" onSubmit={(event) => { event.preventDefault(); setWholesaleSent(true); }}>
+            <form className="wholesale-form" onSubmit={sendWholesale}>
               {wholesaleSent ? (
                 <div className="form-success" role="status">
                   <span>✓</span>
@@ -420,6 +456,7 @@ export default function Home() {
                   </label>
                   <label>{t.wholesale.needs}<textarea name="message" rows={3} placeholder={t.wholesale.needsPlaceholder} /></label>
                   <button className="button button-gold" type="submit">{t.wholesale.submit} <span>→</span></button>
+                  {wholesaleError && <p className="form-error" role="alert">{wholesaleError}</p>}
                 </>
               )}
             </form>
