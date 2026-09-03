@@ -195,7 +195,9 @@ export default function OurStoryPage() {
               t.ourStory.heroTitle
             )}
           </h1>
-          {isMobile && locale === "en" && <span className="supporting-line">Unmistakably Marianas.</span>}
+          {isMobile && locale === "en" && (
+            <span className="supporting-line supporting-line--nowrap">Unmistakably Marianas.</span>
+          )}
           <p>{t.ourStory.heroIntro}</p>
           {isMobile && locale === "en" && <span className="continue-indicator" aria-hidden="true">↓</span>}
         </div>
