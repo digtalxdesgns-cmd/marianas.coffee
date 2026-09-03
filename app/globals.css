@@ -261,7 +261,7 @@ a { color: inherit; text-decoration: none; }
   }
   .story-hero-content {
     position: absolute;
-    left: 16px;
+    left: 8px;
     right: auto;
     top: 50%;
     bottom: auto;
@@ -284,7 +284,7 @@ a { color: inherit; text-decoration: none; }
   .story-hero-content h1 {
     margin: 0;
     max-width: 155px;
-    font-size: clamp(20px, 6.4vw, 30px);
+    font-size: clamp(17px, 5.5vw, 27px);
     line-height: .9;
     letter-spacing: -.04em;
   }
