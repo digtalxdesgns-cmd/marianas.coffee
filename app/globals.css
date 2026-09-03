@@ -62,13 +62,13 @@ a { color: inherit; text-decoration: none; }
 
 .hero { min-height: calc(100vh - 128px); position: relative; overflow: hidden; display: flex; align-items: flex-start; background-color: #29261f; background-image: linear-gradient(90deg, rgba(24,23,19,.82) 0%, rgba(31,29,23,.54) 34%, rgba(33,31,27,.28) 63%, rgba(37,35,30,.12) 100%), linear-gradient(rgba(194,164,102,.05), rgba(24,23,19,.08)), url('/images/hero-desktop.png'); background-size: cover; background-position: center; color: white; }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(24,22,18,.32), transparent 42%); }
-.hero-content { position: relative; z-index: 2; width: min(780px, 68vw); padding: 72px clamp(24px, 8vw, 132px) 92px; }
+.hero-content { position: relative; z-index: 2; width: min(560px, 62vw); padding: 72px clamp(24px, 8vw, 132px) 92px; display: flex; flex-direction: column; align-items: flex-start; }
 .eyebrow { margin: 0 0 18px; color: var(--rust); font-size: 10px; line-height: 1.4; font-weight: 800; letter-spacing: .23em; text-transform: uppercase; }
 .eyebrow.light { color: #f0d18b; }
 .hero h1, .section h2, .cart-header h2 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -.035em; }
-.hero h1 { max-width: 900px; font-size: clamp(56px, 6.8vw, 104px); line-height: .9; }
-.hero-copy { max-width: 570px; margin: 34px 0 36px; color: rgba(255,255,255,.83); font-family: Georgia, serif; font-size: clamp(17px, 1.5vw, 22px); line-height: 1.55; }
-.hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.hero h1 { max-width: 900px; margin: 0; font-size: clamp(56px, 6.8vw, 104px); line-height: .9; }
+.hero-copy { max-width: 570px; margin: 20px 0 28px; color: rgba(255,255,255,.83); font-family: Georgia, serif; font-size: clamp(17px, 1.5vw, 22px); line-height: 1.55; }
+.hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; margin-top: 0; }
 .button { min-height: 52px; padding: 0 24px; border: 0; display: inline-flex; align-items: center; justify-content: center; gap: 22px; cursor: pointer; font-size: 10px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; transition: transform .2s ease, background .2s ease; }
 .button:hover { transform: translateY(-2px); }
 .button-gold { background: var(--gold); color: var(--espresso); }
@@ -200,6 +200,12 @@ a { color: inherit; text-decoration: none; }
 .story-hero { position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr; min-height: 680px; background: var(--deep); color: white; }
 .story-hero-media { min-height: 100%; background: linear-gradient(115deg, rgba(19,16,14,0.48), rgba(19,16,14,0.08)), url('/images/hero-saipan-coffee.png') center/cover no-repeat; }
 .story-hero-content { padding: clamp(52px, 8vw, 104px) clamp(28px, 6vw, 96px); display: flex; flex-direction: column; justify-content: center; }
+
+@media (max-width: 620px) {
+  .story-hero-media {
+    background: linear-gradient(180deg, rgba(19,16,14,0.32), rgba(19,16,14,0.18)), url('/images/our-story-hero-mobile.png') center/cover no-repeat;
+  }
+}
 .story-hero-content .eyebrow { margin-bottom: 18px; }
 .story-hero-content h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(52px, 5vw, 86px); line-height: 0.96; letter-spacing: -.04em; font-weight: 400; }
 .story-hero-content p:last-child { max-width: 540px; margin: 28px 0 0; color: rgba(255,255,255,.78); font-family: Georgia, serif; font-size: clamp(20px, 2vw, 28px); line-height: 1.55; }
@@ -227,44 +233,75 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 620px) {
   .site-header { height: 68px; }
-  .story-hero { display: block; min-height: auto; }
+  .story-hero {
+    position: relative;
+    display: block;
+    min-height: calc(100vh - 68px);
+    padding-bottom: 0;
+    background: transparent;
+  }
   .story-hero-media {
-    height: 280px;
-    min-height: 280px;
-    background-position: center 22%;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: calc(100vh - 68px);
+    min-height: 420px;
+    background: linear-gradient(
+      to top right,
+      rgba(20, 5, 2, 0.86) 0%,
+      rgba(20, 5, 2, 0.62) 42%,
+      rgba(20, 5, 2, 0.18) 72%,
+      transparent 100%
+    ), url('/images/our-story-hero-mobile.png') center/cover no-repeat;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     object-fit: cover;
     object-position: center bottom;
   }
   .story-hero-content {
-    padding: 36px 22px 20px;
-    display: block;
+    position: absolute;
+    left: 16px;
+    right: auto;
+    top: 50%;
+    bottom: auto;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 68%;
+    padding: 0;
+    box-sizing: border-box;
+    transform: translateY(-50%);
   }
   .story-hero-content .eyebrow {
-    margin: 0 0 12px;
-    font-size: 9px;
+    margin: 0 0 8px;
+    color: #f0d18b;
+    font-size: 8px;
     letter-spacing: .12em;
   }
   .story-hero-content h1 {
     margin: 0;
-    font-size: 46px;
-    line-height: 0.95;
+    max-width: 240px;
+    font-size: 30px;
+    line-height: .9;
     letter-spacing: -.04em;
   }
   .story-hero-content .supporting-line {
     display: block;
-    margin: 6px 0 10px;
-    color: rgba(255,255,255,.82);
+    margin: 6px 0 8px;
+    color: #f0d18b;
     font-family: Georgia, serif;
-    font-size: 26px;
-    line-height: 1.1;
+    font-size: 20px;
+    line-height: 1.08;
     letter-spacing: -.02em;
   }
   .story-hero-content p:last-child {
+    max-width: 240px;
     margin: 0;
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: 12px;
+    line-height: 1.46;
     color: rgba(255,255,255,.78);
   }
   .story-hero-content .continue-indicator {
@@ -376,8 +413,8 @@ html:lang(ja) .hero h1, html:lang(ja) h2, html:lang(ja) h3 {
   .header-shop { display: none; }
   .hero { min-height: calc(100svh - 106px); background-image: linear-gradient(90deg, rgba(24,23,19,.78) 0%, rgba(31,29,23,.56) 38%, rgba(25,27,21,.12) 72%), linear-gradient(rgba(194,164,102,.04), rgba(24,23,19,.08)), url('/images/hero-mobile.png'); background-position: center; }
   .hero-content { width: 100%; padding: 82px 22px 72px; }
-  .hero h1 { font-size: clamp(42px, 12vw, 58px); line-height: 0.9; }
-  .hero-copy { font-size: 17px; white-space: pre-line; }
+  .hero h1 { font-size: clamp(34px, 10vw, 52px); line-height: 0.88; }
+  .hero-copy { margin: 18px 0 24px; font-size: 17px; white-space: pre-line; }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 24px; }
   .intro-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .intro-strip > div { padding: 18px 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; border-right: 1px solid var(--line); border-bottom: 0; text-align: center; }
