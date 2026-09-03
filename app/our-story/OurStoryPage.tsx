@@ -313,12 +313,12 @@ export default function OurStoryPage() {
           </svg>
           <span>{t.nav.coffee}</span>
         </Link>
-        <Link href="/#wholesale" aria-label={t.nav.wholesale}>
+        <Link href="/#wholesale" aria-label={t.nav.contact}>
           <svg className="bottom-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
             <path d="m4 6 8 7 8-7" />
           </svg>
-          <span>{t.nav.wholesale}</span>
+          <span>{t.nav.contact}</span>
         </Link>
         <a href={shopUrl} aria-label={t.nav.shop}>
           <svg className="bottom-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
