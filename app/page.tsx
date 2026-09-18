@@ -9,15 +9,15 @@ const shopUrl = (process.env.NEXT_PUBLIC_SHOP_URL ?? "https://shop.marianascoffe
 
 const productImages = [
   {
-    src: "/images/products/Medium-Roast.png",
-    alt: "Marianas Coffee Medium Roast bag",
-  },
-  {
-    src: "/images/products/Dark-Roast.png",
+    src: "/images/products/Mt-Tapochau.png",
     alt: "Marianas Coffee Dark Roast bag",
   },
   {
-    src: "/images/products/Signature.png",
+    src: "/images/products/Dark-Roast.png",
+    alt: "Marianas Coffee Colombian Roast bag",
+  },
+  {
+    src: "/images/products/Saipan-Blend.png",
     alt: "Marianas Coffee Signature blend bag",
   },
 ] as const;
@@ -525,7 +525,7 @@ export default function Home() {
         </div>
         <div className="footer-links"><strong>{t.footer.explore}</strong>{t.footer.links.map((label, index) => <a key={label} href={[shopUrl, "/our-story", "#process", "#wholesale"][index]}>{label}</a>)}</div>
         <div className="footer-links"><strong>{t.footer.contact}</strong><span>{t.footer.location}</span><a href="tel:+16702341000">+1 670 234 1000</a><a href="tel:+16703229554">+1 670 322 9554</a></div>
-        <div className="footer-bottom"><span>{t.footer.copyright}</span><span>Earth&apos;s Finest Coffee®</span><span>Saipan · MP 96950</span></div>
+        <div className="footer-bottom"><span>{t.footer.copyright}</span><span>Earth&apos;s Finest Coffee</span><span>Saipan · MP 96950</span></div>
       </footer>
 
     </main>

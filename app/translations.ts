@@ -38,9 +38,9 @@ const en = {
     addLabel: "Shop {product}",
     bagClaim: ["EARTH’S FINEST", "ROASTED IN SAIPAN"],
     products: [
-      { name: "Island Medium Roast", note: "Smooth · Balanced · Caramel", price: "$24", tone: "cream" },
-      { name: "Mt. Tapochao Dark Roast", note: "Bold · Cocoa · Toasted Nut", price: "$26", tone: "brown" },
-      { name: "Hyatt Blend", note: "Rich · Aromatic · Golden Crema", price: "$28", tone: "green" },
+      { name: "Mt. Tapochao Roast", note: "Smooth · Balanced · Caramel", price: "$24", tone: "cream" },
+      { name: "Colombian Roast", note: "Bold · Cocoa · Toasted Nut", price: "$26", tone: "brown" },
+      { name: "Saipan Blend", note: "Rich · Aromatic · Golden Crema", price: "$28", tone: "green" },
     ],
   },
   story: {
@@ -88,8 +88,8 @@ const en = {
     title: ["Three roasts.", "One island attitude."],
     body: "Start with a balanced medium roast, go deeper with a bold dark roast, or discover the rich Hyatt Blend that helped begin our Saipan story.",
     rows: [
-      { label: "Medium", value: "Easy, smooth, everyday" },
-      { label: "Dark", value: "Bold, deep, lingering" },
+      { label: "Mt. Tapochau", value: "Easy, smooth, everyday" },
+      { label: "Colombian", value: "Bold, deep, lingering" },
       { label: "Signature", value: "Rich, aromatic, distinctive" },
     ],
     choose: "Choose your roast",
