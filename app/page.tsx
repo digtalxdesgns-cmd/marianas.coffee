@@ -231,7 +231,7 @@ export default function Home() {
             {filmVideoOpen ? (
               <div className="film-mobile-video video-open">
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/2KTV1iakKk8?rel=0&autoplay=1"
+                  src="https://www.youtube-nocookie.com/embed/rkud76c1o44?rel=0&autoplay=1"
                   title={t.film.videoTitle}
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -245,7 +245,7 @@ export default function Home() {
                 className="film-mobile-video"
                 aria-label="Play the Marianas Coffee story video"
                 onClick={() => setFilmVideoOpen(true)}
-                style={{ backgroundImage: "url('https://img.youtube.com/vi/2KTV1iakKk8/hqdefault.jpg')" }}
+                style={{ backgroundImage: "url('https://img.youtube.com/vi/rkud76c1o44/hqdefault.jpg')" }}
               />
             )}
           </div>
@@ -266,7 +266,7 @@ export default function Home() {
               </div>
               <div className="video-wrap">
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/2KTV1iakKk8?rel=0"
+                  src="https://www.youtube-nocookie.com/embed/rkud76c1o44?rel=0"
                   title={t.film.videoTitle}
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
