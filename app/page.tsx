@@ -203,7 +203,7 @@ export default function Home() {
           <p className="hero-copy">{t.heroCopy}</p>
           <div className="hero-actions">
             <a className="button button-gold" href={shopUrl}>{t.shopCoffee} <span>→</span></a>
-            <a className="text-link light-link" href="/our-story">{t.discoverStory} <span>↘</span></a>
+            <a className="button button-gold hero-story-button" href="/our-story">{t.discoverStory} <span>→</span></a>
           </div>
         </div>
         <div className="hero-origin">
