@@ -11,7 +11,7 @@ const en = {
   language: "Language",
   heroEyebrow: "Born in the Western Pacific Since 2004",
   heroTitle: ["Earth’s finest", "coffee."],
-  heroCopy: "A Taste of Paradise, Roasted in Saipan, USA!",
+  heroCopy: "Taste of paradise on an island in the western pacific. Saipan USA",
   heroOrigin: ["Born in the South Pacific", "Since 2004", "Roasted in Saipan"],
   shopCoffee: "Shop coffee",
   discoverStory: "Discover our story",
