@@ -199,7 +199,14 @@ export default function Home() {
         <div className="hero-shade" />
         <div className="hero-content">
           <p className="eyebrow light">{t.heroEyebrow}</p>
-          <h1>{t.heroTitle[0]}<br />{t.heroTitle[1]}</h1>
+          <h1>
+            {t.heroTitle[0]}
+            <br />
+            <span className="hero-title-word">
+              {t.heroTitle[1]}
+              <sup className="hero-trademark" aria-label="registered trademark">®</sup>
+            </span>
+          </h1>
           <p className="hero-copy">{t.heroCopy}</p>
           <div className="hero-actions">
             <a className="button button-gold" href={shopUrl}>{t.shopCoffee} <span>→</span></a>
