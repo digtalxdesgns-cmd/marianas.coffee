@@ -429,8 +429,9 @@ html:lang(ja) .hero h1, html:lang(ja) h2, html:lang(ja) h3 {
   .header-shop { display: none; }
   .hero { min-height: calc(100svh - 106px); background-image: linear-gradient(90deg, rgba(24,23,19,.78) 0%, rgba(31,29,23,.56) 38%, rgba(25,27,21,.12) 72%), linear-gradient(rgba(194,164,102,.04), rgba(24,23,19,.08)), url('/images/hero-mobile.png'); background-position: center 42%; }
   .hero-content { width: 100%; padding: 58px 22px 72px; }
-  .hero h1 { font-size: clamp(34px, 10vw, 52px); line-height: 0.88; }
-  .hero-title-word { gap: 5.5px; }
+  .hero h1 { font-size: clamp(27px, 8.5vw, 52px); line-height: 0.88; white-space: nowrap; }
+  .hero h1 br { display: none; }
+  .hero-title-word { gap: 5.5px; margin-left: .25em; }
   .hero-trademark { transform: translateY(5px); }
   .intro-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .intro-strip > div { padding: 18px 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; border-right: 1px solid var(--line); border-bottom: 0; text-align: center; }
