@@ -114,6 +114,14 @@ const en = {
     needs: "Tell us what you need",
     needsPlaceholder: "Estimated volume, location, and anything else we should know",
     submit: "Start a conversation",
+    sending: "Sending…",
+    errors: {
+      invalid: "Please check the required fields and try again.",
+      rateLimited: "Too many attempts. Please wait a few minutes and try again.",
+      unavailable: "Online inquiries are not available right now. Please call us at +1 670 234 1000.",
+      failed: "We couldn’t send your inquiry. Please try again or call +1 670 234 1000.",
+      network: "Network error. Please check your connection and try again.",
+    },
   },
   journal: {
     eyebrow: "From the journal",
@@ -133,6 +141,15 @@ const en = {
     emailLabel: "Email address",
     placeholder: "Your email address",
     joinLabel: "Join the Marianas Coffee newsletter",
+    sending: "Sending…",
+    pending: "Almost done. Please check your email to confirm your subscription.",
+    errors: {
+      invalid: "Please enter a valid email address.",
+      rateLimited: "Too many attempts. Please try again later.",
+      unavailable: "Newsletter sign-up isn’t open yet. Please check back soon.",
+      failed: "We couldn’t complete your sign-up. Please try again later.",
+      network: "Network error. Please check your connection and try again.",
+    },
   },
   footer: {
     body: ["Earth’s Finest Coffee.", "Born in the South Pacific. Roasted in Saipan."],
@@ -272,6 +289,14 @@ const zh: Translation = {
     needs: "请告诉我们你的需求",
     needsPlaceholder: "预计数量、地点以及其他需要我们了解的信息",
     submit: "开始沟通",
+    sending: "正在发送…",
+    errors: {
+      invalid: "请检查必填项后重试。",
+      rateLimited: "尝试次数过多，请稍等几分钟后再试。",
+      unavailable: "在线咨询暂时无法使用，请致电 +1 670 234 1000。",
+      failed: "咨询未能发送，请重试或致电 +1 670 234 1000。",
+      network: "网络错误，请检查网络连接后重试。",
+    },
   },
   journal: {
     eyebrow: "咖啡日志",
@@ -291,6 +316,15 @@ const zh: Translation = {
     emailLabel: "电子邮箱",
     placeholder: "你的电子邮箱",
     joinLabel: "订阅 Marianas Coffee 电子通讯",
+    sending: "正在提交…",
+    pending: "即将完成。请查收邮件并确认订阅。",
+    errors: {
+      invalid: "请输入有效的电子邮箱地址。",
+      rateLimited: "尝试次数过多，请稍后再试。",
+      unavailable: "电子通讯订阅尚未开放，敬请期待。",
+      failed: "订阅未能完成，请稍后再试。",
+      network: "网络错误，请检查网络连接后重试。",
+    },
   },
   footer: {
     body: ["Earth’s Finest Coffee。", "诞生于南太平洋，塞班岛烘焙。"],
@@ -428,6 +462,14 @@ const ko: Translation = {
     needs: "필요한 내용을 알려주세요",
     needsPlaceholder: "예상 수량, 위치 및 기타 필요한 정보",
     submit: "상담 시작하기",
+    sending: "전송 중…",
+    errors: {
+      invalid: "필수 항목을 확인한 후 다시 시도해 주세요.",
+      rateLimited: "시도 횟수가 너무 많습니다. 몇 분 후 다시 시도해 주세요.",
+      unavailable: "현재 온라인 문의를 이용할 수 없습니다. +1 670 234 1000으로 전화해 주세요.",
+      failed: "문의를 보내지 못했습니다. 다시 시도하시거나 +1 670 234 1000으로 전화해 주세요.",
+      network: "네트워크 오류입니다. 연결을 확인한 후 다시 시도해 주세요.",
+    },
   },
   journal: {
     eyebrow: "저널에서",
@@ -447,6 +489,15 @@ const ko: Translation = {
     emailLabel: "이메일 주소",
     placeholder: "이메일 주소",
     joinLabel: "Marianas Coffee 뉴스레터 구독",
+    sending: "전송 중…",
+    pending: "거의 완료되었습니다. 이메일을 확인하여 구독을 확정해 주세요.",
+    errors: {
+      invalid: "올바른 이메일 주소를 입력해 주세요.",
+      rateLimited: "시도 횟수가 너무 많습니다. 잠시 후 다시 시도해 주세요.",
+      unavailable: "뉴스레터 구독은 아직 열리지 않았습니다. 곧 다시 확인해 주세요.",
+      failed: "구독을 완료하지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      network: "네트워크 오류입니다. 연결을 확인한 후 다시 시도해 주세요.",
+    },
   },
   footer: {
     body: ["Earth’s Finest Coffee.", "남태평양에서 시작해 사이판에서 로스팅합니다."],
@@ -584,6 +635,14 @@ const ja: Translation = {
     needs: "ご希望をお聞かせください",
     needsPlaceholder: "ご希望の数量、所在地、その他の情報",
     submit: "相談を始める",
+    sending: "送信中…",
+    errors: {
+      invalid: "必須項目をご確認のうえ、もう一度お試しください。",
+      rateLimited: "試行回数が多すぎます。数分後にもう一度お試しください。",
+      unavailable: "現在オンラインでのお問い合わせはご利用いただけません。+1 670 234 1000 までお電話ください。",
+      failed: "お問い合わせを送信できませんでした。もう一度お試しいただくか、+1 670 234 1000 までお電話ください。",
+      network: "ネットワークエラーです。接続をご確認のうえ、もう一度お試しください。",
+    },
   },
   journal: {
     eyebrow: "ジャーナルから",
@@ -603,6 +662,15 @@ const ja: Translation = {
     emailLabel: "メールアドレス",
     placeholder: "メールアドレス",
     joinLabel: "Marianas Coffeeニュースレターに登録",
+    sending: "送信中…",
+    pending: "あと少しです。確認メールをご確認のうえ、登録を完了してください。",
+    errors: {
+      invalid: "有効なメールアドレスを入力してください。",
+      rateLimited: "試行回数が多すぎます。しばらくしてからもう一度お試しください。",
+      unavailable: "ニュースレターの登録はまだ開始していません。しばらくお待ちください。",
+      failed: "登録を完了できませんでした。しばらくしてからもう一度お試しください。",
+      network: "ネットワークエラーです。接続をご確認のうえ、もう一度お試しください。",
+    },
   },
   footer: {
     body: ["Earth’s Finest Coffee.", "南太平洋で生まれ、サイパンで焙煎。"],

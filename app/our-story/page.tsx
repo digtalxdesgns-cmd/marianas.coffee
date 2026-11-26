@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
 import OurStoryPage from "./OurStoryPage";
+import { PAGES, SITE_NAME } from "@/lib/seo/site";
+
+const page = PAGES.story;
 
 export const metadata: Metadata = {
-  title: "Our Story | Marianas Coffee",
-  description: "The story of Marianas Coffee began on Saipan in 2004 and still continues with island-roasted coffee inspired by the South Pacific.",
+  title: page.title,
+  description: page.description,
+  alternates: { canonical: page.path },
   openGraph: {
-    title: "Our Story | Marianas Coffee",
-    description: "Born here. Roasted here. Unmistakably Marianas.",
-    url: "https://marianascoffee.com/our-story",
-    siteName: "Marianas Coffee",
+    title: page.title,
+    description: page.description,
+    url: page.path,
+    siteName: SITE_NAME,
     locale: "en_US",
     type: "website",
+    images: [page.image],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: page.title,
+    description: page.description,
+    images: [page.image.url],
   },
 };
 
