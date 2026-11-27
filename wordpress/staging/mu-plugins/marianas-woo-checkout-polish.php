@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Marianas Coffee Checkout Polish (STAGING ONLY)
  * Description: Staging-only, checkout-scoped visual and multilingual polish for hardcoded checkout theme snippets, order-summary table overflow, and the header language selector.
- * Version: 0.1.0
+ * Version: 0.1.1
  *
  * SECURITY & SAFETY NOTES:
  * - Strict staging hostname allowlist: activates ONLY on MARIANAS_STAGING_HOST (default: regionaltest.shop.marianascoffee.com).
@@ -219,13 +219,14 @@ html body.woocommerce-checkout table.woocommerce-checkout-review-order-table td.
 	white-space: nowrap !important;
 }
 
-html body.woocommerce-checkout table.woocommerce-checkout-review-order-table tfoot th {
+html body.woocommerce-checkout #order_review table.woocommerce-checkout-review-order-table tfoot th {
 	width: 38% !important;
 	padding-right: 12px !important;
 	overflow-wrap: break-word !important;
 }
 
-html body.woocommerce-checkout table.woocommerce-checkout-review-order-table tfoot td {
+html body.woocommerce-checkout #order_review table.woocommerce-checkout-review-order-table tfoot td,
+html body.woocommerce-checkout #order_review table.woocommerce-checkout-review-order-table tfoot tr.shipping td {
 	width: 62% !important;
 	text-align: right !important;
 	white-space: normal !important;
@@ -233,9 +234,9 @@ html body.woocommerce-checkout table.woocommerce-checkout-review-order-table tfo
 	word-break: break-word !important;
 }
 
-html body.woocommerce-checkout table.woocommerce-checkout-review-order-table tfoot tr.cart-subtotal td,
-html body.woocommerce-checkout table.woocommerce-checkout-review-order-table tfoot tr.order-total td,
-html body.woocommerce-checkout table.woocommerce-checkout-review-order-table .woocommerce-Price-amount {
+html body.woocommerce-checkout #order_review table.woocommerce-checkout-review-order-table tfoot tr.cart-subtotal td,
+html body.woocommerce-checkout #order_review table.woocommerce-checkout-review-order-table tfoot tr.order-total td,
+html body.woocommerce-checkout #order_review table.woocommerce-checkout-review-order-table .woocommerce-Price-amount {
 	white-space: nowrap !important;
 }
 
@@ -248,11 +249,12 @@ html body.woocommerce-checkout table.woocommerce-checkout-review-order-table .wo
 		width: 40% !important;
 	}
 
-	html body.woocommerce-checkout table.woocommerce-checkout-review-order-table tfoot th {
+	html body.woocommerce-checkout #order_review table.woocommerce-checkout-review-order-table tfoot th {
 		width: 34% !important;
 	}
 
-	html body.woocommerce-checkout table.woocommerce-checkout-review-order-table tfoot td {
+	html body.woocommerce-checkout #order_review table.woocommerce-checkout-review-order-table tfoot td,
+	html body.woocommerce-checkout #order_review table.woocommerce-checkout-review-order-table tfoot tr.shipping td {
 		width: 66% !important;
 	}
 }
@@ -394,7 +396,7 @@ function marianas_checkout_polish_print_css() {
 
 	echo "\n<style id=\"mc-checkout-polish-css\">\n" . marianas_checkout_polish_get_css() . "\n</style>\n";
 }
-add_action( 'wp_head', 'marianas_checkout_polish_print_css', 999 );
+add_action( 'wp_head', 'marianas_checkout_polish_print_css', PHP_INT_MAX );
 
 /**
  * Outputs scoped checkout-only JS after mc-luxury-checkout-js and mc-vercel-matched-header-js.
