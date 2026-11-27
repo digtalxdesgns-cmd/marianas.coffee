@@ -106,10 +106,23 @@ test("translateWooString translates covered strings and falls back safely for un
   assert.equal(translateWooString("Place order", "zh"), "提交订单");
   assert.equal(translateWooString("Place order", "ko"), "주문 완료하기");
   assert.equal(translateWooString("Place order", "ja"), "注文を確定する");
-  assert.equal(translateWooString("Hi %s,", "ja"), "%s様");
+  assert.equal(translateWooString("Hi %s,", "zh"), "%s，您好：");
+  assert.equal(translateWooString("Hi %s,", "ko"), "%s님, 안녕하세요.");
+  assert.equal(translateWooString("Hi %s,", "ja"), "%s 様");
+  assert.equal(translateWooString("Cash on delivery", "ko"), "배송 시 현금 결제");
+  assert.equal(
+    translateWooString("Coupon \"%s\" does not exist!", "ko"),
+    "존재하지 않는 쿠폰 코드입니다: %s",
+  );
+  assert.equal(
+    translateWooString("I have read and agree to the website %s", "ja"),
+    "本サイトの %s を確認し、内容に同意します",
+  );
   assert.equal(
     translateWooString("Third-party plugin notice not in dictionary", "ja"),
     "Third-party plugin notice not in dictionary",
   );
   assert.equal(getStorefrontCopy("unsupported").title, commerceDictionary.storefront.en.title);
+  assert.equal(commerceDictionary.storefront.en.title, "The Island Coffee Shop.");
+  assert.equal(listAllWooEntries().length, 94);
 });

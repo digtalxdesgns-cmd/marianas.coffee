@@ -1,11 +1,11 @@
 {
-  "version": "1.0.0",
-  "status": "draft_pending_owner_review",
+  "version": "1.1.0",
+  "status": "owner_reviewed_v1_1",
   "locales": ["en", "zh", "ko", "ja"],
   "storefront": {
     "en": {
       "metaTitle": "Shop Coffee | Marianas Coffee",
-      "metaDescription": "Explore small-batch Marianas Coffee roasted on Saipan. Live availability, four-language cart, and secure WooCommerce checkout.",
+      "metaDescription": "Explore small-batch Marianas Coffee roasted on Saipan. Check live availability and enjoy secure online checkout.",
       "eyebrow": "ROASTED IN SAIPAN · LIVE CATALOG",
       "title": "The Island Coffee Shop.",
       "subtitle": "Small-batch coffee roasted on Saipan since 2004. Choose your roasts below to build your cart and continue to secure checkout.",
@@ -71,7 +71,7 @@
       "metaTitle": "选购咖啡 | Marianas Coffee",
       "metaDescription": "探索塞班岛小批量烘焙的 Marianas Coffee 精选咖啡，查看实时库存并轻松前往安全结账。",
       "eyebrow": "塞班岛烘焙 · 实时商品目录",
-      "title": "海岛咖啡商店",
+      "title": "岛屿咖啡商店",
       "subtitle": "自 2004 年起坚持在塞班岛小批量烘焙。在下方挑选心仪风味加入购物车，随后前往安全结账。",
       "openCartLabel": "打开购物车",
       "catalogRegionLabel": "咖啡商品目录",
@@ -95,8 +95,8 @@
       "region": {
         "label": "购物地区",
         "selectLabel": "选择购物地区",
-        "saipan": "塞班岛 (Saipan / CNMI)",
-        "guam": "关岛 (Guam)",
+        "saipan": "塞班岛 (CNMI)",
+        "guam": "关岛",
         "shanghai": "上海 (中国)",
         "sourceDetected": "已自动识别",
         "sourceManual": "已手动选择",
@@ -109,7 +109,7 @@
         "title": "购物车",
         "close": "关闭购物车",
         "emptyTitle": "购物车还是空的。",
-        "emptyBody": "从上方挑选一款塞班岛烘焙咖啡，开始你的风味之旅。",
+        "emptyBody": "从商品目录挑选一款塞班岛烘焙咖啡，开始选购吧。",
         "continueShopping": "浏览咖啡",
         "subtotal": "商品小计",
         "subtotalNote": "价格由在线商店实时核验，运费与税费将在结账时最终确认。",
@@ -124,7 +124,7 @@
         "reconciledAdjusted": "部分商品数量已根据当前可售库存自动调整。",
         "checkoutErrors": {
           "items_unavailable": "部分商品暂时缺货或超出当前可购数量，购物车已更新，请确认后再试。",
-          "store_unavailable": "暂时无法连接商店核验购物车，请稍后重试。",
+          "store_unavailable": "暂时无法连接在线商店核验购物车，请稍后重试。",
           "rate_limited": "操作过于频繁，请稍等片刻后再试。",
           "invalid": "无法核验您的购物车内容，请检查商品后再试。",
           "network": "网络连接异常，请检查网络后再试。"
@@ -133,22 +133,22 @@
     },
     "ko": {
       "metaTitle": "커피 쇼핑 | Marianas Coffee",
-      "metaDescription": "사이판에서 소량 로스팅한 Marianas Coffee 원두를 만나보세요. 실시간 재고 확인과 안전한 결제를 지원합니다.",
+      "metaDescription": "사이판에서 소량 로스팅한 Marianas Coffee 커피를 만나보세요. 실시간 재고 확인과 안전한 결제를 지원합니다.",
       "eyebrow": "사이판 로스팅 · 실시간 카탈로그",
-      "title": "아일랜드 커피 숍",
-      "subtitle": "2004년부터 사이판에서 소량씩 정성껏 로스팅합니다. 원하는 원두를 장바구니에 담아 안전하게 결제해 보세요.",
+      "title": "아일랜드 커피 스토어",
+      "subtitle": "2004년부터 사이판에서 소량씩 정성껏 로스팅합니다. 원하는 커피를 장바구니에 담아 안전하게 결제해 보세요.",
       "openCartLabel": "장바구니 열기",
       "catalogRegionLabel": "커피 상품 목록",
-      "loading": "원두 목록을 불러오는 중입니다…",
+      "loading": "커피 목록을 불러오는 중입니다…",
       "emptyTitle": "현재 구매할 수 있는 커피가 없습니다.",
-      "emptyBody": "사이판 로스터리에서 새로운 배치를 준비 중입니다. 잠시 후 다시 방문하시거나 도매 문의를 이용해 주세요.",
+      "emptyBody": "사이판 로스터리에서 신선한 커피를 준비 중입니다. 잠시 후 다시 방문하시거나 도매 문의를 이용해 주세요.",
       "backHome": "홈으로 돌아가기",
       "errorTitle": "상품 목록을 불러오지 못했습니다.",
       "errorBody": "스토어 연결이 일시적으로 원활하지 않습니다. 잠시 후 다시 시도해 주세요.",
       "retry": "다시 시도",
       "inStock": "구매 가능",
       "outOfStock": "품절",
-      "unavailable": "판매 중지",
+      "unavailable": "현재 구매 불가",
       "priceUnavailable": "가격 준비 중",
       "addToCart": "장바구니 담기",
       "addedToCart": "담기 완료",
@@ -159,8 +159,8 @@
       "region": {
         "label": "쇼핑 지역",
         "selectLabel": "쇼핑 지역 선택",
-        "saipan": "사이판 (Saipan / CNMI)",
-        "guam": "괌 (Guam)",
+        "saipan": "사이판 (CNMI)",
+        "guam": "괌",
         "shanghai": "상하이 (중국)",
         "sourceDetected": "자동 감지됨",
         "sourceManual": "직접 선택",
@@ -169,11 +169,11 @@
         "pricingNote": "최종 재고, 배송 옵션 및 결제 금액은 결제 화면에서 확정됩니다."
       },
       "cart": {
-        "eyebrow": "선택한 원두",
+        "eyebrow": "선택한 상품",
         "title": "장바구니",
         "close": "장바구니 닫기",
         "emptyTitle": "장바구니가 비어 있습니다.",
-        "emptyBody": "카탈로그에서 마음에 드는 아일랜드 로스트를 담아 보세요.",
+        "emptyBody": "카탈로그에서 마음에 드는 커피를 담아 보세요.",
         "continueShopping": "커피 둘러보기",
         "subtotal": "예상 상품 금액",
         "subtotalNote": "상품 가격은 스토어에서 실시간으로 확인되며, 배송비와 세금은 결제 단계에서 최종 확정됩니다.",
@@ -187,7 +187,7 @@
         "reconciledRemoved": "이전에 담아둔 일부 상품이 현재 구매할 수 없어 장바구니에서 제외되었습니다.",
         "reconciledAdjusted": "현재 구매 가능한 수량에 맞춰 일부 상품 수량이 조정되었습니다.",
         "checkoutErrors": {
-          "items_unavailable": "일부 상품이 품절되었거나 구매 가능 수량을 초과했습니다. 장바구니를 새로고침했으니 확인 후 다시 시도해 주세요.",
+          "items_unavailable": "일부 상품이 품절되었거나 구매 가능 수량을 초과해 장바구니가 업데이트되었습니다. 확인 후 다시 시도해 주세요.",
           "store_unavailable": "스토어와 연결하지 못해 장바구니를 확인할 수 없습니다. 잠시 후 다시 시도해 주세요.",
           "rate_limited": "결제 요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.",
           "invalid": "장바구니 정보를 확인할 수 없습니다. 담긴 상품을 확인한 뒤 다시 시도해 주세요.",
@@ -197,9 +197,9 @@
     },
     "ja": {
       "metaTitle": "コーヒーを選ぶ | Marianas Coffee",
-      "metaDescription": "サイパンで少量焙煎した Marianas Coffee のオンラインストア。最新の在庫確認から安全な購入手続きまでご利用いただけます。",
-      "eyebrow": "サイパン焙煎 · ライブカタログ",
-      "title": "アイランド・コーヒーショップ",
+      "metaDescription": "サイパンで少量焙煎した Marianas Coffee のオンラインストア。最新の在庫確認から安全なご購入手続きまでご利用いただけます。",
+      "eyebrow": "サイパン焙煎 · オンラインストア",
+      "title": "アイランド・コーヒーストア",
       "subtitle": "2004年からサイパンで少量ずつ丁寧に焙煎しています。お好みのローストをカートに入れて、安全な購入手続きへお進みください。",
       "openCartLabel": "カートを開く",
       "catalogRegionLabel": "コーヒー商品一覧",
@@ -223,12 +223,12 @@
       "region": {
         "label": "ショッピング地域",
         "selectLabel": "ショッピング地域を選択",
-        "saipan": "サイパン (Saipan / CNMI)",
-        "guam": "グアム (Guam)",
+        "saipan": "サイパン (CNMI)",
+        "guam": "グアム",
         "shanghai": "上海 (中国)",
-        "sourceDetected": "自動判定",
+        "sourceDetected": "自動設定",
         "sourceManual": "選択中",
-        "sourceDefault": "標準地域",
+        "sourceDefault": "初期設定",
         "independenceNote": "ショッピング地域と言語設定はそれぞれ独立して変更できます。",
         "pricingNote": "最終的な在庫状況・配送方法・お支払い金額は購入手続き画面にて確定します。"
       },
@@ -353,6 +353,41 @@
           "zh": "购物车汇总",
           "ko": "장바구니 합계",
           "ja": "カート合計"
+        },
+        {
+          "key": "cart.updated",
+          "source": "Cart updated.",
+          "zh": "购物车已更新。",
+          "ko": "장바구니가 업데이트되었습니다.",
+          "ja": "カートを更新しました。"
+        },
+        {
+          "key": "cart.item_removed",
+          "source": "%s removed.",
+          "zh": "已移除 %s。",
+          "ko": "%s 상품이 삭제되었습니다.",
+          "ja": "%s をカートから削除しました。"
+        },
+        {
+          "key": "cart.undo",
+          "source": "Undo?",
+          "zh": "撤销",
+          "ko": "실행 취소",
+          "ja": "元に戻す"
+        },
+        {
+          "key": "cart.coupon_applied",
+          "source": "Coupon code applied successfully.",
+          "zh": "优惠码已成功使用。",
+          "ko": "쿠폰이 적용되었습니다.",
+          "ja": "クーポンを適用しました。"
+        },
+        {
+          "key": "cart.coupon_not_found",
+          "source": "Coupon \"%s\" does not exist!",
+          "zh": "优惠码“%s”不存在，请检查后重试。",
+          "ko": "존재하지 않는 쿠폰 코드입니다: %s",
+          "ja": "クーポン「%s」は見つかりませんでした。"
         }
       ],
       "checkout": [
@@ -361,7 +396,7 @@
           "source": "Checkout",
           "zh": "结账",
           "ko": "결제",
-          "ja": "お支払い・購入手続き"
+          "ja": "ご購入手続き"
         },
         {
           "key": "checkout.billing_details",
@@ -409,8 +444,15 @@
           "key": "checkout.street_address",
           "source": "Street address",
           "zh": "街道地址",
-          "ko": "도로명 주소",
-          "ja": "番地・町名"
+          "ko": "상세 주소 (거리명/번지)",
+          "ja": "町名・番地"
+        },
+        {
+          "key": "checkout.street_placeholder",
+          "source": "House number and street name",
+          "zh": "街道名称及门牌号",
+          "ko": "거리명 및 번지 입력",
+          "ja": "町名・番地をご入力ください"
         },
         {
           "key": "checkout.address_line_2",
@@ -476,6 +518,13 @@
           "ja": "ご注文メモ"
         },
         {
+          "key": "checkout.notes_placeholder",
+          "source": "Notes about your order, e.g. special notes for delivery.",
+          "zh": "订单备注，例如配送时间或特别说明。",
+          "ko": "배송 시 요청 사항 등 주문 메모를 입력해 주세요.",
+          "ja": "配送に関するご希望など、ご注文の備考をご記入ください。"
+        },
+        {
           "key": "checkout.additional_information",
           "source": "Additional information",
           "zh": "补充信息",
@@ -509,6 +558,27 @@
           "zh": "有优惠码？",
           "ko": "쿠폰이 있으신가요?",
           "ja": "クーポンをお持ちですか？"
+        },
+        {
+          "key": "checkout.coupon_click_here",
+          "source": "Click here to enter your code",
+          "zh": "点击此处输入优惠码",
+          "ko": "여기를 클릭해 쿠폰 코드를 입력하세요",
+          "ja": "こちらをクリックしてクーポンコードを入力"
+        },
+        {
+          "key": "checkout.coupon_prompt",
+          "source": "If you have a coupon code, please apply it below.",
+          "zh": "如果您有优惠码，请在下方输入使用。",
+          "ko": "쿠폰 코드가 있으시면 아래에 입력해 주세요.",
+          "ja": "クーポンコードをお持ちの場合は、下記に入力して適用してください。"
+        },
+        {
+          "key": "checkout.returning_customer",
+          "source": "Returning customer?",
+          "zh": "老顾客？",
+          "ko": "기존 회원이신가요?",
+          "ja": "すでにアカウントをお持ちですか？"
         },
         {
           "key": "checkout.optional",
@@ -545,7 +615,7 @@
           "source": "Flat rate",
           "zh": "标准运费",
           "ko": "기본 배송",
-          "ja": "定額送料"
+          "ja": "一律送料"
         },
         {
           "key": "shipping.calculate",
@@ -595,7 +665,7 @@
           "key": "payment.cod",
           "source": "Cash on delivery",
           "zh": "货到付款",
-          "ko": "현장 결제",
+          "ko": "배송 시 현금 결제",
           "ja": "代金引換"
         },
         {
@@ -608,9 +678,23 @@
         {
           "key": "payment.privacy_notice",
           "source": "Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our %s.",
-          "zh": "您的个人资料将用于处理本次订单、优化您的网站体验，以及用于我们%s中说明的其他用途。",
+          "zh": "您的个人资料将用于处理本次订单、优化您的网站体验，以及用于我们在 %s 中说明的其他用途。",
           "ko": "입력하신 개인정보는 주문 처리, 웹사이트 이용 지원 및 %s에 안내된 목적에 따라 사용됩니다.",
-          "ja": "お客様の個人情報は、ご注文の処理、本サイトでの体験向上、および%sに記載された目的のために使用されます。"
+          "ja": "お客様の個人情報は、ご注文の処理、本サイトでの体験向上、および %s に記載された目的のために使用されます。"
+        },
+        {
+          "key": "payment.privacy_policy_link",
+          "source": "privacy policy",
+          "zh": "隐私政策",
+          "ko": "개인정보 처리방침",
+          "ja": "プライバシーポリシー"
+        },
+        {
+          "key": "payment.terms_agreement",
+          "source": "I have read and agree to the website %s",
+          "zh": "我已阅读并同意本网站的 %s",
+          "ko": "웹사이트 %s 내용을 확인했으며 이에 동의합니다",
+          "ja": "本サイトの %s を確認し、内容に同意します"
         }
       ],
       "validation": [
@@ -638,9 +722,9 @@
         {
           "key": "validation.required_field",
           "source": "%s is a required field.",
-          "zh": "请填写%s。",
+          "zh": "请填写 %s。",
           "ko": "%s 항목은 필수 입력 사항입니다.",
-          "ja": "%sは必須項目です。"
+          "ja": "%sを入力してください。"
         },
         {
           "key": "validation.invalid_email",
@@ -653,7 +737,7 @@
           "key": "validation.invalid_phone",
           "source": "%s is not a valid phone number.",
           "zh": "%s不是有效的电话号码。",
-          "ko": "%s은(는) 올바른 전화번호 형식이 아닙니다.",
+          "ko": "올바른 전화번호 형식이 아닙니다: %s",
           "ja": "%sは有効な電話番号ではありません。"
         },
         {
@@ -754,9 +838,9 @@
         {
           "key": "email.greeting",
           "source": "Hi %s,",
-          "zh": "您好，%s：",
-          "ko": "안녕하세요, %s님.",
-          "ja": "%s様"
+          "zh": "%s，您好：",
+          "ko": "%s님, 안녕하세요.",
+          "ja": "%s 様"
         },
         {
           "key": "email.thanks_heading",
@@ -782,8 +866,8 @@
         {
           "key": "email.order_processing_intro",
           "source": "Just to let you know — we've received your order #%s, and it is now being processed:",
-          "zh": "我们已收到您的订单 #%s，正在为您安排处理：",
-          "ko": "주문 번호 #%s가 정상적으로 접수되어 현재 준비 중입니다:",
+          "zh": "我们已收到您的订单 #%s，正在为您处理，订单详情如下：",
+          "ko": "주문 번호 #%s가 정상적으로 접수되어 현재 주문을 준비하고 있습니다.",
           "ja": "ご注文 #%s を受け付け、現在手配を進めております。"
         },
         {
@@ -806,6 +890,48 @@
           "zh": "[订单 #%s]",
           "ko": "[주문 #%s]",
           "ja": "[ご注文 #%s]"
+        },
+        {
+          "key": "email.on_hold_intro",
+          "source": "Thanks for your order. It’s on-hold until we confirm that payment has been received.",
+          "zh": "感谢您的订购。在确认收到款项之前，您的订单将暂时保留。",
+          "ko": "주문해 주셔서 감사합니다. 입금이 확인될 때까지 주문이 보류 상태로 유지됩니다.",
+          "ja": "ご注文ありがとうございます。ご入金の確認が取れるまで、ご注文は保留中となります。"
+        },
+        {
+          "key": "email.order_cancelled_subject",
+          "source": "[%s]: Order #%s has been cancelled",
+          "zh": "[%s] 订单 #%s 已取消",
+          "ko": "[%s] 주문 번호 #%s가 취소되었습니다",
+          "ja": "[%s] ご注文 #%s はキャンセルされました"
+        },
+        {
+          "key": "email.order_refunded_subject",
+          "source": "Your %s order #%s has been refunded",
+          "zh": "您在 %s 的订单 #%s 已完成退款",
+          "ko": "%s 주문 번호 #%s의 환불이 완료되었습니다",
+          "ja": "%s でのご注文 #%s の返金が完了しました"
+        },
+        {
+          "key": "email.order_refunded_heading",
+          "source": "Order Refunded: #%s",
+          "zh": "订单已退款：#%s",
+          "ko": "주문 환불 완료: #%s",
+          "ja": "ご注文の返金が完了しました：#%s"
+        },
+        {
+          "key": "email.order_refunded_intro",
+          "source": "Your order on %s has been refunded. There are more details below for your reference:",
+          "zh": "您在 %s 的订单已完成退款，详情如下供您参考：",
+          "ko": "%s에서 진행하신 주문의 환불이 완료되었습니다. 아래 상세 내역을 확인해 주세요.",
+          "ja": "%s でのご注文の返金が完了いたしました。詳細は以下をご確認ください。"
+        },
+        {
+          "key": "email.customer_note_subject",
+          "source": "Note added to your %s order from %s",
+          "zh": "您在 %s（%s）的订单新增了一条备注",
+          "ko": "%s (%s) 주문에 새 안내 메모가 추가되었습니다",
+          "ja": "%s（%s）のご注文にお知らせが追加されました"
         }
       ]
     }
