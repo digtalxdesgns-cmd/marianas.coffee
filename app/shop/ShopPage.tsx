@@ -483,24 +483,43 @@ export default function ShopPage() {
                     : s.region.sourceDefault}
               </span>
             </div>
-            <select
-              id="shop-region-select"
-              className={styles.regionSelect}
-              value={region}
-              aria-label={s.region.selectLabel}
-              onChange={(event) => {
-                const chosen = normalizeStoreRegion(event.target.value);
-                if (chosen) changeRegion(chosen);
-              }}
-            >
-              {SUPPORTED_REGIONS.map((code) => (
-                <option key={code} value={code}>
-                  {s.region[code]}
-                </option>
-              ))}
-            </select>
-            <p className={styles.regionNote}>{s.region.independenceNote}</p>
-            <p className={styles.regionNote}>{s.region.pricingNote}</p>
+            <div className={styles.regionSelectWrap}>
+              <span className={styles.regionSelectValue} aria-hidden="true">
+                {s.region[region]}
+              </span>
+              <svg
+                className={styles.regionChevron}
+                viewBox="0 0 12 12"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M2.5 4.5 6 8l3.5-3.5" />
+              </svg>
+              <select
+                id="shop-region-select"
+                className={styles.regionNativeSelect}
+                value={region}
+                aria-label={s.region.selectLabel}
+                onChange={(event) => {
+                  const chosen = normalizeStoreRegion(event.target.value);
+                  if (chosen) changeRegion(chosen);
+                }}
+              >
+                {SUPPORTED_REGIONS.map((code) => (
+                  <option key={code} value={code}>
+                    {s.region[code]}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.regionNotes}>
+              <p className={styles.regionNote}>{s.region.independenceNote}</p>
+              <p className={styles.regionNote}>{s.region.pricingNote}</p>
+            </div>
           </div>
         </div>
       </section>
