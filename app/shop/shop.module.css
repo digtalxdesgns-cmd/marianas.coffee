@@ -86,6 +86,69 @@
   line-height: 1.6;
 }
 
+.regionBar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px 16px;
+  min-width: min(320px, 100%);
+  background: rgba(255, 250, 240, 0.08);
+  border: 1px solid rgba(240, 209, 139, 0.28);
+}
+
+.regionHeaderRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.regionLabel {
+  color: #f0d18b;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.regionSourcePill {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(224, 170, 34, 0.22);
+  color: #fff2c7;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.regionSelect {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 250, 240, 0.36);
+  background: rgba(40, 17, 11, 0.72);
+  color: #fffaf0;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.regionSelect:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.regionNote {
+  margin: 0 !important;
+  color: rgba(255, 250, 240, 0.74) !important;
+  font-family: Inter, system-ui, sans-serif !important;
+  font-size: 11px !important;
+  line-height: 1.45 !important;
+}
+
 .catalogSection {
   max-width: 1440px;
   margin: 0 auto;

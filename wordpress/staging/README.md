@@ -60,10 +60,11 @@
 
 3. Open **Hostinger hPanel → Websites → `regionaltest.shop.marianascoffee.com` → File Manager**.
 4. Navigate to `wp-content/mu-plugins/` (create the `mu-plugins` folder if it does not exist).
-5. Upload the three PHP-validated files:
+5. Upload the three PHP-validated files and the companion custom translation dictionary folder:
    - `marianas-staging-guard.php`
    - `marianas-woo-checkout-handoff.php`
    - `marianas-woo-multilingual-checkout.php`
+   - `marianas-i18n/translations.json` (version-controlled custom 4-language dictionary; requires owner translation review & approval before treating copy as final)
 6. Purge Hostinger **LiteSpeed Cache** and verify in **Staging WP-Admin**:
    - The yellow **Marianas Staging Environment** banner appears confirming search indexing is blocked and owner test emails are enabled.
    - No red **Payment Safety Lock Active** banner appears (if it does, Stripe still has live settings active).

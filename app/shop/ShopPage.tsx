@@ -22,6 +22,16 @@ import {
   parseStoreProductsResponse,
   type CheckoutErrorKind,
 } from "@/lib/woo/client";
+import {
+  DEFAULT_REGION,
+  loadManualRegion,
+  normalizeStoreRegion,
+  REGION_STORAGE_KEY,
+  saveManualRegion,
+  SUPPORTED_REGIONS,
+  type RegionSource,
+  type StoreRegion,
+} from "@/lib/woo/region";
 import type { StoreProduct } from "@/lib/woo/products";
 import { shopTranslations } from "./shopTranslations";
 import CartDrawer from "./CartDrawer";
@@ -31,6 +41,9 @@ type CatalogState = "loading" | "ready" | "error";
 
 export default function ShopPage() {
   const [locale, setLocale] = useState<Locale>("en");
+  const [preferencesReady, setPreferencesReady] = useState(false);
+  const [region, setRegion] = useState<StoreRegion>(DEFAULT_REGION);
+  const [regionSource, setRegionSource] = useState<RegionSource>("default");
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerScrolled, setHeaderScrolled] = useState(false);
 
@@ -65,15 +78,84 @@ export default function ShopPage() {
     const timer = window.setTimeout(() => {
       if (validLocale) setLocale(validLocale);
       setCartLines(loadCart(window.localStorage));
+      const savedRegion = loadManualRegion(window.localStorage);
+      if (savedRegion) {
+        setRegion(savedRegion);
+        setRegionSource("manual");
+      }
+      setPreferencesReady(true);
     }, 0);
     return () => window.clearTimeout(timer);
   }, []);
 
-  // Keep cart synced across tabs.
+  // Resolve region dynamically from server-side geolocation headers / cookie without caching.
+  // Manual localStorage or cookie selection always takes priority over auto-detection.
+  useEffect(() => {
+    const controller = new AbortController();
+    let active = true;
+
+    async function resolveRegion() {
+      const localManual = loadManualRegion(window.localStorage);
+      if (localManual) {
+        setRegion(localManual);
+        setRegionSource("manual");
+        // Ensure server cookie stays aligned with manual localStorage override.
+        void fetch("/api/store/region", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ region: localManual }),
+          signal: controller.signal,
+        }).catch(() => {});
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/store/region", {
+          method: "GET",
+          headers: { Accept: "application/json" },
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        const json = (await response.json().catch(() => null)) as {
+          ok?: boolean;
+          region?: unknown;
+          source?: unknown;
+        } | null;
+        if (!active || !response.ok || !json?.ok) return;
+
+        const nextRegion = normalizeStoreRegion(json.region);
+        const nextSource: RegionSource =
+          json.source === "manual" || json.source === "detected" ? json.source : "default";
+        if (nextRegion) {
+          setRegion(nextRegion);
+          setRegionSource(nextSource);
+          if (nextSource === "manual") {
+            saveManualRegion(nextRegion, window.localStorage);
+          }
+        }
+      } catch {
+        // Keep documented safe default on network error.
+      }
+    }
+
+    void resolveRegion();
+    return () => {
+      active = false;
+      controller.abort();
+    };
+  }, []);
+
+  // Keep cart and manual region synced across tabs.
   useEffect(() => {
     const handleStorage = (event: StorageEvent) => {
       if (event.key === CART_STORAGE_KEY) {
         setCartLines(loadCart(window.localStorage));
+      } else if (event.key === REGION_STORAGE_KEY) {
+        const updatedRegion = loadManualRegion(window.localStorage);
+        if (updatedRegion) {
+          setRegion(updatedRegion);
+          setRegionSource("manual");
+        }
       }
     };
     window.addEventListener("storage", handleStorage);
@@ -88,8 +170,10 @@ export default function ShopPage() {
     return () => window.removeEventListener("scroll", updateHeaderState);
   }, []);
 
-  // Load live catalog from server-side /api/store/products.
+  // Load live catalog from server-side /api/store/products once saved locale is restored.
   useEffect(() => {
+    if (!preferencesReady) return undefined;
+
     const controller = new AbortController();
     let active = true;
 
@@ -143,7 +227,7 @@ export default function ShopPage() {
       active = false;
       controller.abort();
     };
-  }, [locale, reloadNonce]);
+  }, [locale, preferencesReady, reloadNonce]);
 
   const reconciledCart = useMemo(
     () => reconcileCartWithCatalog(cartLines, products),
@@ -166,6 +250,18 @@ export default function ShopPage() {
     window.localStorage.setItem("marianas-coffee-language", nextLocale);
     document.documentElement.lang =
       localeOptions.find((option) => option.value === nextLocale)?.lang ?? "en";
+  };
+
+  const changeRegion = (nextRegion: StoreRegion) => {
+    // Region selection is strictly independent of language and never mutates product prices.
+    setRegion(nextRegion);
+    setRegionSource("manual");
+    saveManualRegion(nextRegion, window.localStorage);
+    void fetch("/api/store/region", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ region: nextRegion }),
+    }).catch(() => {});
   };
 
   const handleAddToCart = (product: StoreProduct) => {
@@ -338,6 +434,39 @@ export default function ShopPage() {
             <p className="eyebrow light">{s.eyebrow}</p>
             <h1>{s.title}</h1>
             <p>{s.subtitle}</p>
+          </div>
+
+          <div className={styles.regionBar} aria-label={s.region.label}>
+            <div className={styles.regionHeaderRow}>
+              <label htmlFor="shop-region-select" className={styles.regionLabel}>
+                {s.region.label}
+              </label>
+              <span className={styles.regionSourcePill}>
+                {regionSource === "manual"
+                  ? s.region.sourceManual
+                  : regionSource === "detected"
+                    ? s.region.sourceDetected
+                    : s.region.sourceDefault}
+              </span>
+            </div>
+            <select
+              id="shop-region-select"
+              className={styles.regionSelect}
+              value={region}
+              aria-label={s.region.selectLabel}
+              onChange={(event) => {
+                const chosen = normalizeStoreRegion(event.target.value);
+                if (chosen) changeRegion(chosen);
+              }}
+            >
+              {SUPPORTED_REGIONS.map((code) => (
+                <option key={code} value={code}>
+                  {s.region[code]}
+                </option>
+              ))}
+            </select>
+            <p className={styles.regionNote}>{s.region.independenceNote}</p>
+            <p className={styles.regionNote}>{s.region.pricingNote}</p>
           </div>
         </div>
       </section>
