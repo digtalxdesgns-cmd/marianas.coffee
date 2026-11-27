@@ -362,7 +362,13 @@ export default function ShopPage() {
         </Link>
       </div>
 
-      <header className={headerScrolled ? "site-header site-header--scrolled" : "site-header"}>
+      <header
+        className={
+          headerScrolled
+            ? `site-header site-header--scrolled ${styles.shopHeader} ${styles.shopHeaderScrolled}`
+            : `site-header ${styles.shopHeader}`
+        }
+      >
         <Link className="wordmark" href="/" aria-label={t.homeLabel}>
           <Image
             className="brand-logo header-logo"
@@ -390,9 +396,24 @@ export default function ShopPage() {
         </nav>
 
         <div className="header-actions">
-          <label className="language-switcher">
-            <span className="sr-only">{t.language}</span>
+          <div className={styles.langPill}>
+            <span className={styles.langLabel} aria-hidden="true">
+              {localeOptions.find((option) => option.value === locale)?.label ?? "English"}
+            </span>
+            <svg
+              className={styles.langChevron}
+              viewBox="0 0 12 12"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M2.5 4.5 6 8l3.5-3.5" />
+            </svg>
             <select
+              className={styles.langNativeSelect}
               value={locale}
               onChange={(event) => changeLanguage(event.target.value as Locale)}
               aria-label={t.language}
@@ -403,7 +424,7 @@ export default function ShopPage() {
                 </option>
               ))}
             </select>
-          </label>
+          </div>
 
           <button
             type="button"
@@ -411,6 +432,19 @@ export default function ShopPage() {
             onClick={openCart}
             aria-label={`${s.openCartLabel} (${badgeCount})`}
           >
+            <svg
+              className={styles.cartIcon}
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M6 7h12l-1.5 11.5a1 1 0 0 1-1 .9H8.5a1 1 0 0 1-1-.9L6 7Z" />
+              <path d="M9 7V5a3 3 0 0 1 6 0v2" />
+            </svg>
             <span className={styles.cartTriggerLabel}>{t.cart}</span>
             <span className={styles.cartBadge}>{badgeCount}</span>
           </button>

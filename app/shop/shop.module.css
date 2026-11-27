@@ -4,6 +4,53 @@
   color: var(--ink);
 }
 
+.langPill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 11px 0 13px;
+  border: 1px solid rgba(74, 25, 15, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.56);
+  color: var(--ink);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.langPill:has(select:focus-visible) {
+  border-color: var(--rust);
+  box-shadow: 0 0 0 3px rgba(224, 170, 34, 0.28);
+}
+
+.langLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.langChevron {
+  width: 11px;
+  height: 11px;
+  opacity: 0.78;
+  flex: 0 0 auto;
+}
+
+.langNativeSelect {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  color: var(--ink);
+  background: var(--paper);
+}
+
 .cartTrigger {
   display: inline-flex;
   align-items: center;
@@ -30,6 +77,13 @@
 .cartTrigger:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
+}
+
+.cartIcon {
+  display: none;
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
 }
 
 .cartBadge {
@@ -788,20 +842,131 @@
 }
 
 @media (max-width: 620px) {
+  .shopHeader {
+    height: 64px;
+    padding: 0 16px;
+    background: var(--deep);
+    border-bottom: 1px solid rgba(240, 209, 139, 0.08);
+    box-shadow: none;
+  }
+
+  .shopHeaderScrolled {
+    background: rgba(255, 250, 240, 0.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 8px 24px rgba(40, 17, 11, 0.08);
+  }
+
+  .shopHeader :global(.header-logo) {
+    width: 44px;
+    height: 43px;
+  }
+
+  .shopHeader :global(.main-nav) {
+    top: 64px;
+  }
+
+  .shopHeader :global(.header-actions) {
+    gap: 8px;
+  }
+
+  .shopHeader .langPill {
+    height: 36px;
+    padding: 0 10px 0 12px;
+    border: 1px solid rgba(240, 209, 139, 0.28);
+    background: rgba(255, 250, 240, 0.08);
+    color: #fffaf0;
+  }
+
+  .shopHeader .langNativeSelect option {
+    background: var(--deep);
+    color: #fffaf0;
+  }
+
+  .shopHeaderScrolled .langPill {
+    border-color: rgba(74, 25, 15, 0.22);
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--ink);
+  }
+
+  .shopHeaderScrolled .langNativeSelect option {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .shopHeader :global(.menu-button) {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid rgba(240, 209, 139, 0.28);
+    background: rgba(255, 250, 240, 0.08);
+  }
+
+  .shopHeader :global(.menu-button i) {
+    width: 15px;
+    height: 1.5px;
+    background: #fffaf0;
+  }
+
+  .shopHeaderScrolled :global(.menu-button) {
+    border-color: rgba(74, 25, 15, 0.22);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .shopHeaderScrolled :global(.menu-button i) {
+    background: var(--ink);
+  }
+
   .cartTrigger {
+    position: relative;
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
     min-height: 36px;
-    padding: 0 10px;
-    gap: 6px;
-    font-size: 9px;
-    letter-spacing: 0.08em;
+    padding: 0;
+    gap: 0;
+    justify-content: center;
+    border: 1px solid rgba(240, 209, 139, 0.28);
+    background: rgba(255, 250, 240, 0.08);
+    color: #fffaf0;
+  }
+
+  .cartTrigger:hover {
+    background: rgba(255, 250, 240, 0.16);
+    transform: none;
+  }
+
+  .shopHeaderScrolled .cartTrigger {
+    border-color: rgba(74, 25, 15, 0.22);
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--ink);
+  }
+
+  .cartIcon {
+    display: block;
   }
 
   .cartTriggerLabel {
     display: none;
   }
 
+  .cartBadge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    font-size: 9px;
+    line-height: 1;
+    box-shadow: 0 1px 4px rgba(20, 8, 5, 0.3);
+  }
+
   .shopHero {
-    padding: 36px 18px 40px;
+    padding: 24px 18px 36px;
+    background:
+      radial-gradient(circle at 86% 24%, rgba(224, 170, 34, 0.18), transparent 38%),
+      linear-gradient(180deg, var(--deep) 0%, #4e100b 58%, #5a120d 100%);
   }
 
   .catalogSection {

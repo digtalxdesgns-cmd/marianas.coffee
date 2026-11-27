@@ -12,7 +12,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background-color: var(--paper); }
 body { margin: 0; background-color: var(--paper); background-image: radial-gradient(circle at 18% 12%, rgba(224,170,34,.06), transparent 23%), repeating-linear-gradient(112deg, rgba(74,25,15,.018) 0 1px, transparent 1px 9px); color: var(--ink); font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
 
 /* Language-specific font stacks (document.documentElement.lang is set by the app) */
@@ -52,7 +52,7 @@ a { color: inherit; text-decoration: none; }
 .header-shop:hover { background: var(--espresso); transform: translateY(-1px); }
 .language-switcher { position: relative; display: flex; align-items: center; }
 .language-switcher::after { content: "⌄"; position: absolute; right: 10px; top: 50%; pointer-events: none; transform: translateY(-58%); color: rgba(23,63,61,.68); font-size: 12px; }
-.language-switcher select { min-width: 90px; height: 36px; padding: 0 28px 0 11px; border: 1px solid rgba(23,63,61,.25); border-radius: 18px; outline: none; appearance: none; background: rgba(255,255,255,.48); color: var(--ink); cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .04em; }
+.language-switcher select { min-width: 90px; height: 36px; padding: 0 28px 0 11px; border: 1px solid rgba(23,63,61,.25); border-radius: 18px; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; background: rgba(255,255,255,.48); color: var(--ink); cursor: pointer; font-size: 10px; font-weight: 700; letter-spacing: .04em; }
 .language-switcher select:focus-visible { border-color: var(--rust); box-shadow: 0 0 0 3px rgba(224,170,34,.2); }
 .text-button, .menu-button { border: 0; background: none; color: inherit; cursor: pointer; }
 .cart-button { display: flex; gap: 7px; align-items: center; font-size: 11px; text-transform: uppercase; letter-spacing: .14em; }
@@ -414,18 +414,20 @@ html:lang(ja) .hero h1, html:lang(ja) h2, html:lang(ja) h3 {
 
 @media (max-width: 620px) {
   .announcement { display: none; }
-  .site-header { height: 76px; padding: 0 14px 0 16px; }
-  .main-nav { top: 76px; }
+  .site-header { height: 64px; padding: 0 16px; }
+  .main-nav { top: 64px; }
   .wordmark { font-size: 16px; }
-  .header-logo { width: 54px; height: 52px; }
+  .header-logo { width: 46px; height: 45px; }
   .wordmark-mark { width: 34px; height: 34px; }
-  .header-actions { gap: 7px; }
+  .header-actions { gap: 8px; }
   .main-nav a { width: auto; height: auto; padding: 8px 0; border-radius: 0; justify-content: flex-start; }
   .main-nav a::after { display: block; }
   .bottom-nav { display: grid; }
   main { padding-bottom: 88px; }
-  .language-switcher select { min-width: 72px; width: 72px; height: 32px; padding: 0 22px 0 8px; font-size: 9px; }
-  .language-switcher::after { right: 7px; }
+  .language-switcher select { min-width: 0; width: auto; height: 36px; padding: 0 10px; font-size: 11px; font-weight: 600; line-height: normal; }
+  .language-switcher::after { display: none; }
+  .menu-button { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; width: 36px; height: 36px; padding: 0; }
+  .menu-button i { width: 18px; height: 1.5px; margin: 0; }
   .header-shop { display: none; }
   .hero { min-height: calc(100svh - 106px); background-image: linear-gradient(90deg, rgba(24,23,19,.78) 0%, rgba(31,29,23,.56) 38%, rgba(25,27,21,.12) 72%), linear-gradient(rgba(194,164,102,.04), rgba(24,23,19,.08)), url('/images/hero-mobile.png'); background-position: center 42%; }
   .hero-content { width: 100%; padding: 58px 22px 72px; }
