@@ -83,6 +83,10 @@ function marianas_persist_checkout_lang_cookie() {
 		)
 	);
 	$_COOKIE[ MARIANAS_LANG_COOKIE_NAME ] = $lang;
+
+	if ( function_exists( 'nocache_headers' ) ) {
+		nocache_headers();
+	}
 }
 add_action( 'init', 'marianas_persist_checkout_lang_cookie', 1 );
 

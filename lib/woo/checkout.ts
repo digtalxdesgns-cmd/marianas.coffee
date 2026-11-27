@@ -10,12 +10,17 @@ export type BuildCheckoutUrlOptions = {
   shopOrigin: string;
   items: readonly CartLine[];
   locale?: StoreLocale;
+  /**
+   * "auto" (default): native `?add-to-cart=` for 1 item, `?mc_cart=` for 2+ items.
+   * "mc_cart": always use `?mc_cart=` (recommended once the staging handoff MU-plugin is installed).
+   */
+  mode?: "auto" | "mc_cart";
 };
 
 /**
  * Builds a WooCommerce classic checkout handoff URL for the sanitized cart.
- * - Single item: uses native WooCommerce `?add-to-cart=<id>&quantity=<qty>&lang=<locale>`.
- * - Multi-item: uses `?mc_cart=<id>:<qty>,<id>:<qty>&lang=<locale>` for the
+ * - Single item ("auto"): uses native WooCommerce `?add-to-cart=<id>&quantity=<qty>&lang=<locale>`.
+ * - Multi-item (or mode="mc_cart"): uses `?mc_cart=<id>:<qty>,<id>:<qty>&lang=<locale>` for the
  *   staging-verified WooCommerce cart handoff handler.
  * Returns null if the shop origin is invalid or the cart has no valid items.
  */
@@ -29,7 +34,7 @@ export function buildWooCheckoutUrl(options: BuildCheckoutUrlOptions): string | 
   const locale = normalizeLocale(options.locale);
   const url = new URL("/checkout/", origin);
 
-  if (clean.length === 1) {
+  if (clean.length === 1 && options.mode !== "mc_cart") {
     const [only] = clean;
     url.searchParams.set("add-to-cart", String(only.productId));
     url.searchParams.set("quantity", String(only.quantity));

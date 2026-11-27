@@ -81,6 +81,9 @@ function marianas_handoff_valid_lang() {
  * Redirects safely to a WooCommerce-owned checkout or cart URL, preserving validated lang.
  */
 function marianas_handoff_safe_redirect( $base_url, $lang = '' ) {
+	if ( function_exists( 'nocache_headers' ) && ! headers_sent() ) {
+		nocache_headers();
+	}
 	$target = $base_url;
 	if ( '' !== $lang ) {
 		$target = add_query_arg( 'lang', $lang, $target );
@@ -203,6 +206,10 @@ function marianas_handle_woo_checkout_handoff() {
 	}
 
 	WC()->cart->calculate_totals();
+
+	if ( null !== WC()->session && method_exists( WC()->session, 'save_data' ) ) {
+		WC()->session->save_data();
+	}
 
 	// Post-Redirect-Get (303) to clean checkout URL to prevent duplicate adds on refresh.
 	marianas_handoff_safe_redirect( wc_get_checkout_url(), $lang );

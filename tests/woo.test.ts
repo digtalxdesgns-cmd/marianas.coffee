@@ -396,6 +396,16 @@ test("buildWooCheckoutUrl produces native single-item and multi-item handoff URL
     `${STAGING_ORIGIN}/checkout/?add-to-cart=101&quantity=1&lang=zh`,
   );
 
+  assert.equal(
+    buildWooCheckoutUrl({
+      shopOrigin: STAGING_ORIGIN,
+      items: [{ productId: 101, quantity: 2 }],
+      locale: "en",
+      mode: "mc_cart",
+    }),
+    `${STAGING_ORIGIN}/checkout/?mc_cart=101%3A2&lang=en`,
+  );
+
   assert.equal(buildWooCheckoutUrl({ shopOrigin: STAGING_ORIGIN, items: [] }), null);
   assert.equal(
     buildWooCheckoutUrl({
