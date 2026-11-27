@@ -124,5 +124,31 @@ test("translateWooString translates covered strings and falls back safely for un
   );
   assert.equal(getStorefrontCopy("unsupported").title, commerceDictionary.storefront.en.title);
   assert.equal(commerceDictionary.storefront.en.title, "The Island Coffee Shop.");
-  assert.equal(listAllWooEntries().length, 94);
+  assert.equal(listAllWooEntries().length, 103);
+});
+
+test("checkout polish translation keys exist across all four languages", () => {
+  const expected: Array<[string, string, string, string]> = [
+    ["Order summary", "订单摘要", "주문 요약", "ご注文内容"],
+    ["Complete your order.", "完成您的订单", "주문을 완료해 주세요.", "ご注文のお手続き"],
+    ["Secure checkout", "安全结账", "안전한 결제", "安全なご購入手続き"],
+    [
+      "Freshly roasted in Saipan and carefully packed for its journey to you.",
+      "塞班岛新鲜烘焙，精心包装，为您安心送达。",
+      "사이판에서 갓 로스팅한 커피를 정성껏 포장해 보내드립니다.",
+      "サイパンで焙煎したてのコーヒーを、丁寧に梱包してお届けします。",
+    ],
+    ["Confirmation", "订单确认", "주문 확인", "ご注文確認"],
+    ["Checkout progress", "结账进度", "결제 진행 단계", "ご購入手続きの進行状況"],
+    ["Shipping shown before payment", "付款前确认运费", "결제 전 배송비 확인", "お支払い前に送料をご案内"],
+    ["Select language", "选择语言", "언어 선택", "言語を選択"],
+    ["Shipment", "配送", "배송", "配送"],
+  ];
+
+  for (const [source, zh, ko, ja] of expected) {
+    assert.equal(translateWooString(source, "en"), source);
+    assert.equal(translateWooString(source, "zh"), zh);
+    assert.equal(translateWooString(source, "ko"), ko);
+    assert.equal(translateWooString(source, "ja"), ja);
+  }
 });

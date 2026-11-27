@@ -586,12 +586,75 @@
           "zh": "选填",
           "ko": "선택 사항",
           "ja": "任意"
+        },
+        {
+          "key": "checkout.order_summary",
+          "source": "Order summary",
+          "zh": "订单摘要",
+          "ko": "주문 요약",
+          "ja": "ご注文内容"
+        },
+        {
+          "key": "checkout.hero_title",
+          "source": "Complete your order.",
+          "zh": "完成您的订单",
+          "ko": "주문을 완료해 주세요.",
+          "ja": "ご注文のお手続き"
+        },
+        {
+          "key": "checkout.secure_eyebrow",
+          "source": "Secure checkout",
+          "zh": "安全结账",
+          "ko": "안전한 결제",
+          "ja": "安全なご購入手続き"
+        },
+        {
+          "key": "checkout.hero_lead",
+          "source": "Freshly roasted in Saipan and carefully packed for its journey to you.",
+          "zh": "塞班岛新鲜烘焙，精心包装，为您安心送达。",
+          "ko": "사이판에서 갓 로스팅한 커피를 정성껏 포장해 보내드립니다.",
+          "ja": "サイパンで焙煎したてのコーヒーを、丁寧に梱包してお届けします。"
+        },
+        {
+          "key": "checkout.step_confirmation",
+          "source": "Confirmation",
+          "zh": "订单确认",
+          "ko": "주문 확인",
+          "ja": "ご注文確認"
+        },
+        {
+          "key": "checkout.progress_aria",
+          "source": "Checkout progress",
+          "zh": "结账进度",
+          "ko": "결제 진행 단계",
+          "ja": "ご購入手続きの進行状況"
+        },
+        {
+          "key": "checkout.trust_shipping_note",
+          "source": "Shipping shown before payment",
+          "zh": "付款前确认运费",
+          "ko": "결제 전 배송비 확인",
+          "ja": "お支払い前に送料をご案内"
+        },
+        {
+          "key": "checkout.select_language",
+          "source": "Select language",
+          "zh": "选择语言",
+          "ko": "언어 선택",
+          "ja": "言語を選択"
         }
       ],
       "shipping": [
         {
           "key": "shipping.title",
           "source": "Shipping",
+          "zh": "配送",
+          "ko": "배송",
+          "ja": "配送"
+        },
+        {
+          "key": "shipping.shipment",
+          "source": "Shipment",
           "zh": "配送",
           "ko": "배송",
           "ja": "配送"
